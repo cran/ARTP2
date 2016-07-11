@@ -33,7 +33,7 @@ rawData.dataframe.setup <- function(formula, data, pathway, family, lambda, subs
   raw.geno <- data[, snps, drop = FALSE]
   null <- data[, setdiff(colnames(data), snps), drop = FALSE]
   
-  ini <- data.parse(formula, null)
+  ini <- data.parse(formula, null, family)
   rm(null, data)
   gc()
   null <- ini$null
@@ -126,7 +126,7 @@ rawData.dataframe.setup <- function(formula, data, pathway, family, lambda, subs
   }
   
   # calculate normal covariance and mean
-  norm.stat <- generate.normal.statistics(resp.var, null, raw.geno, pathway, family, lambda)
+  norm.stat <- generate.normal.statistics(resp.var, null, raw.geno, pathway, family, lambda, options)
   
   if(!options$keep.geno){
     rm(raw.geno)

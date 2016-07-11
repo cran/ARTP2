@@ -7,7 +7,7 @@ load.summary.files <- function(summary.files, lambda, sel.snps){
   header <- c('SNP', 'RefAllele', 'EffectAllele', 'BETA') # columns that must be provided by users
   opt.header <- c('P', 'SE')
   
-  complete.header <- c(header, opt.header, 'Direction')
+  complete.header <- c(header, opt.header, 'Chr', 'Pos', 'Direction')
   
   nfiles <- length(summary.files)
   stat <- list()
@@ -51,8 +51,16 @@ load.summary.files <- function(summary.files, lambda, sel.snps){
       st$SE <- NA
     }
     
+    if(!('Chr' %in% colnames(st))){
+      st$P <- NA
+    }
+    
+    if(!('Pos' %in% colnames(st))){
+      st$P <- NA
+    }
+    
     if(!('Direction' %in% colnames(st))){
-      msg <- paste0('Direction is absent in ', summary.files[i], '. Function meta() assumed equal sample sizes for all SNPs in that study. Invalidation of this assumption can lead to false positive if summary data of this study is used in pathway analysis')
+      msg <- paste0('Direction is absent in ', summary.files[i], '. Function meta() assumed equal sample sizes for all SNPs in that study. Violation of this assumption can lead to false positive if summary data of this study is used in pathway analysis')
       warning(msg)
       st$Direction <- ifelse(st$BETA == 0, '0', ifelse(st$BETA > 0, '+', '-'))
     }
@@ -63,7 +71,7 @@ load.summary.files <- function(summary.files, lambda, sel.snps){
       stop(msg)
     }
     
-    st <- st[, complete.header]
+    st <- st[, which(toupper(colnames(st)) %in% toupper(complete.header))]
     
     dup <- duplicated(st$SNP)
     if(any(dup)){

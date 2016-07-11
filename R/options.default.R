@@ -14,10 +14,11 @@ options.default <- function(){
                       group.gap = NULL, 
                       rm.gene.subset = TRUE, 
                       turn.off.filters = FALSE, 
+                      impute = FALSE, 
                       delete = TRUE, 
                       print = TRUE, 
                       tidy = TRUE, 
-                      save.setup = TRUE, 
+                      save.setup = FALSE, 
                       path.setup = NULL, 
                       only.setup = FALSE, 
                       keep.geno = FALSE, 
@@ -40,6 +41,7 @@ options.default <- function(){
                       huge.chr.size = 2000, 
                       huge.gene.R2 = .85, 
                       huge.chr.R2 = .85, 
+                      min.n = FALSE, 
                       version = packageVersion('ARTP2'))
   
   opt.default
