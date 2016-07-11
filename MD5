@@ -1,4 +1,4 @@
-19e81c16d708a992c483f1531c68cb7d *DESCRIPTION
+9119f0e8666a77850f3fcdb833c186d9 *DESCRIPTION
 b233d5f0c817a5e646d73f4c3f8ea6ce *NAMESPACE
 ed6d4b1d875891b4caa69ecd0ec43ed7 *NEWS.md
 225489418558da92a14040b033a9cf23 *R/HWE.exact.R
@@ -101,6 +101,8 @@ ce61cd08596e48015a8704c5fa53d148 *R/validate.sample.size.R
 e892867112447805e9801977e312c062 *R/validate.summary.input.R
 4193cc0453d45ac6feb947584fdd3332 *R/warm.start.R
 5769d23599b5cff85a31d2293486cbe8 *README.md
+8d1a6f29a97ad1c951eba096995aefd1 *configure
+ec3c985dc0d886a7ba54272ee5d6526d *configure.ac
 9731e44141a963648dc4c5c3ed974251 *data/data.rda
 e3a0f77e46eac3d90b912f7f2f7db5af *data/geno.rda
 6e12e08a957c8a1fc54208490fb24a6e *data/pathway.rda
@@ -211,7 +213,7 @@ f185598b3048d71f48916127fdded071 *man/rARTP.Rd
 6aa9e40c89ab6b080f0703995c44167d *man/sARTP.Rd
 a3d54ba722dd199bdbefed04dd41745d *man/subj.id.Rd
 216151ca9e01112dc867cabcc895a56b *man/warm.start.Rd
-24feac2a717f628521908ca053e0b1c4 *src/Makevars
+1aedf0bbf5ec889f151780cf69e3857f *src/Makevars.in
 e3d3cb360fbfdb3c6974e14eb5f09870 *src/Makevars.win
 09d957021aa10262e300e99c7f80fa71 *src/ReadBED.cpp
 bd17315e8c25d18538688ef931564a92 *src/artp2.cpp
