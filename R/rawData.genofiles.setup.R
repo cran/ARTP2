@@ -18,6 +18,9 @@ rawData.genofiles.setup <- function(formula, null, pathway, family, geno.files, 
   # load definition of pathway
   pathway <- load.pathway.definition(pathway, options)
   
+  # Expand the pathway 
+  pathway <- expand_pathway(pathway, geno.files)
+
   # check if all genotype files can be found. Missing files will be given in warning messages
   geno.files <- validate.genofiles(geno.files)
   sf <- map.SNPs.to.genofiles(geno.files, pathway)
@@ -116,8 +119,8 @@ rawData.genofiles.setup <- function(formula, null, pathway, family, geno.files, 
       tmp <- data.table(V1 = geno[[snps[1]]][sid])
       setnames(tmp, names(tmp), snps[1])
       for(s in snps[-1]){
-        tmp[, s := geno[[s]][sid], with = FALSE]
-        geno[, s := NULL, with = FALSE]
+        tmp[, (s) := geno[[s]][sid]]
+        geno[, (s) := NULL]
       }
       gc()
       geno <- tmp

@@ -12,8 +12,8 @@ Pathway and gene level association test using raw data or summary statistics.
 \tabular{ll}{
 Package: \tab ARTP2\cr
 Type: \tab Package\cr
-Version: \tab 0.9.22\cr
-Date: \tab 2016-02-11\cr
+Version: \tab 0.9.42\cr
+Date: \tab 2018-02-05\cr
 License: \tab GPL-2 | GPL-3\cr
 }
 
@@ -32,12 +32,12 @@ Han Zhang, Bill Wheeler, Kai Yu, Yifan Yang
 Maintainer: Han Zhang <han.zhang2@nih.gov>
 }
 \references{
-Zhang H, Wheeler W, Hyland LP, Yang Y, Shi J, Chatterjee N, Yu K. A powerful procedure for pathway-based meta-analysis using summary statistics identifies multiple pathways associated with type II diabetes. 
+Zhang H, Wheeler W, Hyland LP, Yang Y, Shi J, Chatterjee N, Yu K. (2016) A powerful procedure for pathway-based meta-analysis using summary statistics identifies 43 pathways associated with type II diabetes in European populations. PLoS Genetics 12(6): e1006122
 
 Yu K, Li Q, Bergen AW, Pfeiffer RM, Rosenberg PS, Caporaso N, Kraft P, Chatterjee N. (2009) Pathway analysis by adaptive combination of P-values. 
 Genet Epidemiol 33(8): 700 - 709
 
-Zhang H, Shi J, Liang F, Wheeler W, Stolzenberg-Solomon R, Yu K.  (2014) A fast multilocus test with adaptive SNP selection for large-scale genetic association studies. European Journal of Human Genetics, 22, 696 - 702
+Zhang H, Shi J, Liang F, Wheeler W, Stolzenberg-Solomon R, Yu K.  (2014) A fast multilocus test with adaptive SNP selection for large-scale genetic association studies. European Journal of Human Genetics 22: 696 - 702
 
 }
 

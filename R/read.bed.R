@@ -1,13 +1,22 @@
 
 read.bed <- function(bed, bim, fam, sel.snps = NULL, sel.subs = NULL, encode012 = TRUE){
   
-  col.class <- c("NULL", "character", "NULL", "NULL", "character", "character")
-  bim.file <- read.table(bim, header = FALSE, as.is = TRUE, colClasses = col.class)
-  colnames(bim.file) <- c('SNP', 'RefAllele', 'EffectAllele')
+  col.class <- c("integer", "character", "NULL", "integer", "character", "character")
+  bim.file <- read.table(bim, header = FALSE, as.is = TRUE, colClasses = col.class, dec = '*')
+  colnames(bim.file) <- c('Chr', 'SNP', 'Pos', 'RefAllele', 'EffectAllele')
+  bim.file$CP <- paste0('C', bim.file$Chr, 'P', bim.file$Pos)
+  bim.file$ID <- NA
   nsnp <- nrow(bim.file)
   
+  # rename SNP that without a rs number to be C1P234
+  non.rs.id <- which(is.na(bim.file$SNP) | (bim.file$SNP == '.'))
+  if(length(non.rs.id) > 0){
+    bim.file[non.rs.id, 'SNP'] <- paste0('C', bim.file[non.rs.id, 'Chr'], 'P', bim.file[non.rs.id, 'Pos'])
+  }
+  
   if(is.null(sel.snps)){
-    sel.snps <- bim.file[, 1]
+    sel.snps <- bim.file$SNP
+    sel.snp.id <- 1:nsnp
   }else{
     sel.snps <- as.character(sel.snps)
     if(any(duplicated(sel.snps))){
@@ -15,10 +24,11 @@ read.bed <- function(bed, bim, fam, sel.snps = NULL, sel.subs = NULL, encode012 
       warning(msg)
     }
     sel.snps <- unique(sel.snps)
-    sel.snps <- intersect(bim.file[, 1], sel.snps)
+    sel.snps <- reformat.snps(sel.snps)
+    s1 <- which(bim.file$SNP %in% sel.snps)
+    s2 <- which(bim.file$CP %in% sel.snps)
+    sel.snp.id <- sort(unique(c(s1, s2)))
   }
-  
-  sel.snp.id <- which(bim.file[, 1] %in% sel.snps)
   
   nsel <- length(sel.snp.id)
   if(nsel == 0){
@@ -26,7 +36,13 @@ read.bed <- function(bed, bim, fam, sel.snps = NULL, sel.subs = NULL, encode012 
   }
   
   bim.file <- bim.file[sel.snp.id, , drop = FALSE]
-  sel.snps <- bim.file[, 1]
+  sel.snps <- intersect(sel.snps, c(bim.file$SNP, bim.file$CP))
+  id1 <- which(bim.file$SNP %in% sel.snps)
+  id2 <- which(bim.file$CP %in% sel.snps)
+  bim.file$ID[id1] <- bim.file$SNP[id1]
+  bim.file$ID[id2] <- bim.file$CP[id2]
+  
+  sel.snps <- bim.file$ID
   
   col.class <- rep("NULL", 6)
   col.class[2] <- "character"
@@ -56,7 +72,7 @@ read.bed <- function(bed, bim, fam, sel.snps = NULL, sel.subs = NULL, encode012 
     id <- which(sel.subs %in% rownames(geno))
     if(length(id) == 0){
       msg <- paste("No subjects were left in \n", bed)
-      stop(msg)
+      return(NULL)
     }
     sel.subs <- sel.subs[id]
     geno <- geno[sel.subs, , drop = FALSE]
@@ -68,10 +84,10 @@ read.bed <- function(bed, bim, fam, sel.snps = NULL, sel.subs = NULL, encode012 
     return(geno)
   }
   
-  geno <- geno[, bim.file$SNP, drop = FALSE]
+  geno <- geno[, bim.file$ID, drop = FALSE]
   
   for(i in 1:ncol(geno)){
-    rs <- bim.file$SNP[i]
+    rs <- bim.file$ID[i]
     g <- geno[, rs]
     ra <- bim.file$RefAllele[i]
     ea <- bim.file$EffectAllele[i]
