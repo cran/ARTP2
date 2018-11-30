@@ -1,4 +1,4 @@
-405198f02e83bb2ecda5671a04880d1d *DESCRIPTION
+517aeb309f81614f9a4fea6f31d8ffd8 *DESCRIPTION
 589e744327b7abb89d5a01f72812dd9a *NAMESPACE
 5ce374f8bc91e086eb435aa43112ef19 *NEWS.md
 225489418558da92a14040b033a9cf23 *R/HWE.exact.R
@@ -114,8 +114,8 @@ e892867112447805e9801977e312c062 *R/validate.summary.input.R
 4193cc0453d45ac6feb947584fdd3332 *R/warm.start.R
 f83bec94b6df8e61e4fa5a503e2f5b36 *README.md
 e66900a0e679a19b0c32de56a9a33366 *cleanup
-1a14c739706c1b9eb3a5fd75a380e448 *configure
-5bccfb8c471ce917571b44259fbcde14 *configure.ac
+724c4bdcda055b35a81aeeec051d7175 *configure
+3a26eb7dcb8089b3d5400cfeede1174e *configure.ac
 9731e44141a963648dc4c5c3ed974251 *data/data.rda
 e3a0f77e46eac3d90b912f7f2f7db5af *data/geno.rda
 6e12e08a957c8a1fc54208490fb24a6e *data/pathway.rda
